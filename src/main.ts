@@ -1,5 +1,5 @@
 import { isValidEmail } from "./validation/email.js";
 
-const email = 'kallekollen@sko.com';
+const email = 'kalle.kollen@hotmail.com';
 
-console.log(isValidEmail(email));
+isValidEmail(email);
