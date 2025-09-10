@@ -1,118 +1,32 @@
 export function isValidEmail(email: string) {
+    const EMAIL_VALIDATION_PARTS_REGEX = [
+    '^', // Start of the string
+    '[A-Za-z0-9]', // Local name must start with a letter or number
+    '(?:[A-Za-z0-9._+-]*[A-Za-z0-9])?', // Followed by a mix of allowed characters
+    '@', // Separator
+    '[A-Za-z0-9]', // Domain name first label must start with a letter or number
+    '(?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?', // Up to 63 characters long and end with letter or number
+    '(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*', // Multiple labels must be separated by a period
+    '\\.[A-Za-z]{2,63}', // Ending top level domain must be 2-63 letters
+    '$' // End of the regex string
+    ];
 
-    const localName = getLocalName(email);
-    const localNameIsValid = validateLocalName(localName);
+    const EMAIL_VALIDATION_REGEX: RegExp = new RegExp(EMAIL_VALIDATION_PARTS_REGEX.join(''));
 
-    const domainName = getDomainName(email);
-    const domainNameIsValid = validateDomainName(domainName);
+    const emailIsValid = EMAIL_VALIDATION_REGEX.test(email);
 
-}
-
-function getDomainName(email: string): string {
-    const DOMAIN_NAME_REGEX: RegExp = /(?<=@)([A-Za-z0-9.-]+)/;
-    const domainNameRegexMatch = email.match(DOMAIN_NAME_REGEX);
-
-    if (!domainNameRegexMatch) {
-        throw new Error('Invalid domain name.')
-    }
-
-    const domainName = domainNameRegexMatch[0];
-    
-    return domainName;
-}
-
-function getAllDomainLabels(domainName: string): string[] {
-    const DOMAIN_LABEL_REGEX: RegExp = /([A-Za-z0-9-]+)/g;
-
-    const domainLabelMatches = domainName.matchAll(DOMAIN_LABEL_REGEX);
-    const allDomainLabels = [...domainLabelMatches].map(match => match[0])
-
-    console.log(allDomainLabels);
-    return allDomainLabels;
+    return emailIsValid;
 }
 
 
-function getLocalName(email: string): string {
-    const LOCAL_NAME_REGEX: RegExp = /^([A-Za-z0-9._-]+)(?=@)/;
 
-    const localNameRegexMatch = email.match(LOCAL_NAME_REGEX);
 
-    if (!localNameRegexMatch) {
-        throw new Error('Invalid localname.');
-    }
-    const localName = localNameRegexMatch[0];
 
-    return localName;
-}
 
-function validateLocalName(localName: string) {
-    const lastCharacterValid = validateLastCharacter(localName);
-    const firstCharacterValid = validateFirstCharacter(localName);
-    const containsNoConsecutiveSpecialCharacters = hasNoConsecutiveSpecialCharacters(localName);
 
-    if (lastCharacterValid && 
-        firstCharacterValid && 
-        containsNoConsecutiveSpecialCharacters
-    ) {
-        return true;
-    }
 
-    return false;
-}
 
-function validateDomainName(domainName: string) {
-    const domainLabels = getAllDomainLabels(domainName);
-    const domainLabelsAreValid = validateDomainLabels(domainLabels);
 
-    if (domainLabelsAreValid) {
-        return true;
-    } 
-    
-    else {
-        return false;
-    }
-}
 
-function validateDomainLabels(domainLabels: string[]): boolean {
-    for (const label of domainLabels) {
-        validateDomainLabelLength(label);
-        validateFirstCharacter(label);
-        validateLastCharacter(label);
-        hasNoConsecutiveSpecialCharacters(label);
-    }
-
-    return true;
-}
-
-function validateDomainLabelLength(label: string) {
-    const CHARACTER_LENGTH_REGEX: RegExp = /[A-Za-z0-9-]{2,63}/;
-
-    const validLabelRegexMatch = label.match(CHARACTER_LENGTH_REGEX);
-
-    if (!validLabelRegexMatch) {
-        throw new Error('Invalid domain label length.')
-    }
-    const validLabel = validLabelRegexMatch[0];
-
-    return validLabel;
-}
-
-function validateFirstCharacter(localName: string) {
-    const FIRST_CHARACTER_REGEX: RegExp = /^[A-Za-z0-9]/g;
-
-    return FIRST_CHARACTER_REGEX.test(localName);
-}
-
-function validateLastCharacter(localName: string) {
-    const LAST_CHARACTER_REGEX: RegExp = /[A-Za-z0-9]$/g;
-
-    return LAST_CHARACTER_REGEX.test(localName);
-}
-
-function hasNoConsecutiveSpecialCharacters(email: string) {
-    const CONSECUTIVE_SPECIAL_CHARACTER_REGEX: RegExp = /[-_.+]{2,}/;
-
-    return !CONSECUTIVE_SPECIAL_CHARACTER_REGEX.test(email);
-}
 
 
