@@ -12,7 +12,6 @@ export function isValidEmail(email: string) {
     ];
 
     const EMAIL_VALIDATION_REGEX: RegExp = new RegExp(EMAIL_VALIDATION_PARTS_REGEX.join(''));
-
     const emailIsValid = EMAIL_VALIDATION_REGEX.test(email);
 
     return emailIsValid;
