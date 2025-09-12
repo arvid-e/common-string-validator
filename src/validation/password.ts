@@ -1,14 +1,10 @@
 export function isValidPassword(password: string): boolean {
-    if (containsLowerCaseLetter(password) &&
+    return (
+        containsLowerCaseLetter(password) &&
         containsUppercaseLetter(password) &&
-        containsSpecialCharacter(password)) {
+        containsSpecialCharacter(password)
+    );
 
-        return true;
-    } 
-
-    else {
-        return false;
-    }
 }
 
 function containsUppercaseLetter(password: string): boolean {

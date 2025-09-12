@@ -1,14 +1,9 @@
 export function isValidDate(date: string): boolean {
-    if (isValidISODate(date) ||
+    return (
+        isValidISODate(date) ||
         isValidShortDate(date) ||
-        isValidLongDate(date)) {
-
-        return true;
-    }
-
-    else {
-        return false;
-    }
+        isValidLongDate(date)
+    );
 }
 
 function isValidISODate(date: string) {
