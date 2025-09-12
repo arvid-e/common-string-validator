@@ -5,17 +5,17 @@ export function isValidDate(date: string): boolean {
 }
 
 function isValidISODate(date: string) {
-  const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
-  const isValid = SHORT_DATE_REGEX.test(date);
+    const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+    const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-  return isValid;
+    return dateIsValid;
 }
 
 function isValidShortDate(date: string) {
-  const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
-  const isValid = SHORT_DATE_REGEX.test(date);
+    const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
+    const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-  return isValid;
+    return dateIsValid;
 }
 
 function isValidLongDate(date: string): boolean {
