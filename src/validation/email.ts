@@ -1,5 +1,5 @@
 export function isValidEmail(email: string) {
-    const EMAIL_VALIDATION_PARTS_REGEX = [
+  const EMAIL_VALIDATION_PARTS_REGEX = [
     '^', // Start of the string
     '[A-Za-z0-9]', // Local name must start with a letter or number
     '(?:[A-Za-z0-9._+-]*[A-Za-z0-9])?', // Followed by a mix of allowed characters
@@ -8,24 +8,13 @@ export function isValidEmail(email: string) {
     '(?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?', // Up to 63 characters long and end with letter or number
     '(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*', // Multiple labels must be separated by a period
     '\\.[A-Za-z]{2,63}', // Ending top level domain must be 2-63 letters
-    '$' // End of the regex string
-    ];
+    '$', // End of the regex string
+  ];
 
-    const EMAIL_VALIDATION_REGEX: RegExp = new RegExp(EMAIL_VALIDATION_PARTS_REGEX.join(''));
-    const emailIsValid = EMAIL_VALIDATION_REGEX.test(email);
+  const EMAIL_VALIDATION_REGEX: RegExp = new RegExp(
+    EMAIL_VALIDATION_PARTS_REGEX.join(''),
+  );
+  const emailIsValid = EMAIL_VALIDATION_REGEX.test(email);
 
-    return emailIsValid;
+  return emailIsValid;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
