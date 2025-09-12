@@ -1,3 +1,9 @@
+/**
+ * Validates an email strings using short, long or ISO standard format.
+ *
+ * @param {string} email - Email string to validate.
+ * @returns {boolean} - True if valid, false if invalid.
+ */
 export function isValidEmail(email: string) {
   const EMAIL_VALIDATION_PARTS_REGEX = [
     '^', // Start of the string
