@@ -4,7 +4,7 @@
  * @param {string} email - Email string to validate.
  * @returns {boolean} - True if valid, false if invalid.
  */
-export function isValidEmail(email: string) {
+export function isValidEmail(email: string): boolean {
   const EMAIL_VALIDATION_PARTS_REGEX = [
     '^', // Start of the string
     '[A-Za-z0-9]', // Local name must start with a letter or number
