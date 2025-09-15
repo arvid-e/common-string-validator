@@ -1,23 +1,47 @@
+/**
+ * Validates a date string.
+ *
+ * @param {string} date - Date string.
+ * @returns {boolean} - True if valid format false if not.
+ */
 export function isValidDate(date: string): boolean {
   return (
     isValidISODate(date) || isValidShortDate(date) || isValidLongDate(date)
   );
 }
 
+/**
+ * Checks if a date string is in a valid ISO standard format.
+ *
+ * @param {string} date - Date string.
+ * @returns {boolean} - True if valid format false if not.
+ */
 function isValidISODate(date: string) {
-    const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
-    const dateIsValid = SHORT_DATE_REGEX.test(date);
+  const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+  const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-    return dateIsValid;
+  return dateIsValid;
 }
 
+/**
+ * Checks if a date string is in a valid short format.
+ *
+ * @param {string} date - Date string.
+ * @returns {boolean} - True if valid format false if not.
+ */
 function isValidShortDate(date: string) {
-    const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
-    const dateIsValid = SHORT_DATE_REGEX.test(date);
+  const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
+  const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-    return dateIsValid;
+  return dateIsValid;
 }
 
+/**
+ * Checks if a date string is in a valid long format.
+ *
+ * @param {string} date - Date string.
+ * @returns {boolean} - True if valid format false if not.
+ */
 function isValidLongDate(date: string): boolean {
   const LONG_DATE_REGEX: RegExp =
     /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
@@ -41,6 +65,12 @@ function isValidLongDate(date: string): boolean {
   return dateIsValid;
 }
 
+/**
+ * Gets the month number from a month string. (0-11)
+ *
+ * @param {string} month - Month string.
+ * @returns {number} - Number of a month. (0-11)
+ */
 function getMonthNumber(month: string) {
   const validMonths: { [key: string]: number } = {
     January: 0,

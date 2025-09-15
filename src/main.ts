@@ -3,7 +3,7 @@ import { isValidDate } from './validation/date.js';
 import { isValidPassword } from './validation/password.js';
 
 const email = 'kalle.kollen@hotmail.com';
-const longDate = 'February 31, 2025';
+const longDate = 'June 1, 2025';
 const password = '';
 
 console.log('Valid date: ', isValidDate(longDate));
