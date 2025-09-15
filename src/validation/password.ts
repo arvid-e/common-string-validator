@@ -47,7 +47,8 @@ function containsLowerCaseLetter(password: string): boolean {
  * @returns {boolean} - True if it contains a special character, false if not.
  */
 function containsSpecialCharacter(password: string): boolean {
-  const SPECIAL_CHARACTER_REGEX = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+  const SPECIAL_CHARACTER_REGEX = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+
   const hasSpecialCharacter = SPECIAL_CHARACTER_REGEX.test(password);
 
   return hasSpecialCharacter;
@@ -60,7 +61,7 @@ function containsSpecialCharacter(password: string): boolean {
  * @returns {boolean} - True if password string is long enough, false if not.
  */
 function hasValidLength(password: string): boolean {
-    return password.length >= 8;
+  return password.length >= 8;
 }
 
 /**
@@ -70,5 +71,5 @@ function hasValidLength(password: string): boolean {
  * @returns {boolean} - True if password string is a string, false if not.
  */
 function isString(password: string): boolean {
-    return typeof password === 'string';
+  return typeof password === 'string';
 }
