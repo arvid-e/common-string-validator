@@ -6,9 +6,11 @@
  */
 export function isValidPassword(password: string): boolean {
   return (
+    isString(password) &&
     containsLowerCaseLetter(password) &&
     containsUppercaseLetter(password) &&
-    containsSpecialCharacter(password)
+    containsSpecialCharacter(password) &&
+    hasValidLength(password)
   );
 }
 
@@ -49,4 +51,24 @@ function containsSpecialCharacter(password: string): boolean {
   const hasSpecialCharacter = SPECIAL_CHARACTER_REGEX.test(password);
 
   return hasSpecialCharacter;
+}
+
+/**
+ * Checks if the password string is long enough.
+ *
+ * @param {string} password - Password string.
+ * @returns {boolean} - True if password string is long enough, false if not.
+ */
+function hasValidLength(password: string): boolean {
+    return password.length >= 8;
+}
+
+/**
+ * Checks if the password string is a string type.
+ *
+ * @param {string} password - Password string.
+ * @returns {boolean} - True if password string is a string, false if not.
+ */
+function isString(password: string): boolean {
+    return typeof password === 'string';
 }
