@@ -16,7 +16,7 @@ export function isValidDate(date: string): boolean {
  * @param {string} date - Date string.
  * @returns {boolean} - True if valid format false if not.
  */
-function isValidISODate(date: string) {
+function isValidISODate(date: string): boolean {
   const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
@@ -29,7 +29,7 @@ function isValidISODate(date: string) {
  * @param {string} date - Date string.
  * @returns {boolean} - True if valid format false if not.
  */
-function isValidShortDate(date: string) {
+function isValidShortDate(date: string): boolean {
   const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
@@ -43,26 +43,31 @@ function isValidShortDate(date: string) {
  * @returns {boolean} - True if valid format false if not.
  */
 function isValidLongDate(date: string): boolean {
-  const LONG_DATE_REGEX: RegExp =
-    /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
-  const match = date.match(LONG_DATE_REGEX);
+  try {
+    const LONG_DATE_REGEX: RegExp =
+      /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
+    const match = date.match(LONG_DATE_REGEX);
 
-  if (!match?.groups) {
+    if (!match?.groups) {
+      return false;
+    }
+    const { month, day, year } = match.groups;
+
+    if (!month || !day || !year) {
+      return false;
+    }
+    const dateObj = new Date(`${month} ${day}, ${year}`);
+
+    const dateIsValid =
+      !isNaN(dateObj.getTime()) &&
+      dateObj.getFullYear() === Number(year) &&
+      dateObj.getMonth() === getMonthNumber(month);
+
+    return dateIsValid;
+  } catch (_error) {
+    // Ignoring the caught error.
     return false;
   }
-  const { month, day, year } = match.groups;
-
-  if (!month || !day || !year) {
-    return false;
-  }
-  const dateObj = new Date(`${month} ${day}, ${year}`);
-
-  const dateIsValid =
-    !isNaN(dateObj.getTime()) &&
-    dateObj.getFullYear() === Number(year) &&
-    dateObj.getMonth() === getMonthNumber(month);
-
-  return dateIsValid;
 }
 
 /**
@@ -71,7 +76,7 @@ function isValidLongDate(date: string): boolean {
  * @param {string} month - Month string.
  * @returns {number} - Number of a month. (0-11)
  */
-function getMonthNumber(month: string) {
+function getMonthNumber(month: string): number {
   const validMonths: { [key: string]: number } = {
     January: 0,
     February: 1,
@@ -89,5 +94,8 @@ function getMonthNumber(month: string) {
 
   const validMonth = validMonths[month];
 
+  if (!validMonth) {
+    throw new Error('Invalid month string.');
+  }
   return validMonth;
 }
