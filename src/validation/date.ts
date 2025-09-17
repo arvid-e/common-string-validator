@@ -17,9 +17,9 @@ export function isValidDate(date: string): boolean {
  * @returns {boolean} - True if valid format false if not.
  */
 export function isValidISODate(date: string): boolean {
-
   // FIX: validate day, month and year.
-  const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+  const SHORT_DATE_REGEX: RegExp =
+    /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
   return dateIsValid;
@@ -32,9 +32,9 @@ export function isValidISODate(date: string): boolean {
  * @returns {boolean} - True if valid format false if not.
  */
 export function isValidShortDate(date: string): boolean {
-
   // FIX: validate day, month and year.
-  const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
+  const SHORT_DATE_REGEX: RegExp =
+    /^(?<day>\d{2})\/(?<month>\d{2})\/(?<year>\d{4})$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
   return dateIsValid;
