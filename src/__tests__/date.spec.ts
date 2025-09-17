@@ -1,4 +1,9 @@
 import { isValidDate } from '../main.js';
+import {
+  isValidISODate,
+  isValidLongDate,
+  isValidShortDate,
+} from '../validation/date.js';
 
 describe('isValidDate()', () => {
   it('should return false on invalid date format', () => {
@@ -11,19 +16,19 @@ describe('isValidDate()', () => {
 describe('isValidISODate()', () => {
   it('should return true on valid ISO standard date format', () => {
     const shortDate = '2024-11-02';
-    const result = isValidDate(shortDate);
+    const result = isValidISODate(shortDate);
     expect(result).toBe(true);
   });
 
   it('should return false on invalid day input', () => {
     const invalidDate = '99/11/2020';
-    const result = isValidDate(invalidDate);
+    const result = isValidISODate(invalidDate);
     expect(result).toBe(false);
   });
 
   it('should return false on invalid month input', () => {
     const invalidDate = '02/99/2020';
-    const result = isValidDate(invalidDate);
+    const result = isValidISODate(invalidDate);
     expect(result).toBe(false);
   });
 });
@@ -31,19 +36,19 @@ describe('isValidISODate()', () => {
 describe('isValidShortDate()', () => {
   it('should return true on valid short date format', () => {
     const shortDate = '02/11/2024';
-    const result = isValidDate(shortDate);
+    const result = isValidShortDate(shortDate);
     expect(result).toBe(true);
   });
 
   it('should return false on invalid day', () => {
     const invalidDate = '99/11/2020';
-    const result = isValidDate(invalidDate);
+    const result = isValidShortDate(invalidDate);
     expect(result).toBe(false);
   });
 
   it('should return false on invalid month', () => {
     const invalidDate = '02/99/2020';
-    const result = isValidDate(invalidDate);
+    const result = isValidShortDate(invalidDate);
     expect(result).toBe(false);
   });
 });
@@ -51,7 +56,7 @@ describe('isValidShortDate()', () => {
 describe('isValidLongDate()', () => {
   it('should return true on valid long date format', () => {
     const longDate = 'January 12, 2022';
-    const result = isValidDate(longDate);
+    const result = isValidLongDate(longDate);
     expect(result).toBe(true);
   });
 });

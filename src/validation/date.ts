@@ -16,7 +16,7 @@ export function isValidDate(date: string): boolean {
  * @param {string} date - Date string.
  * @returns {boolean} - True if valid format false if not.
  */
-function isValidISODate(date: string): boolean {
+export function isValidISODate(date: string): boolean {
 
   // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
@@ -31,7 +31,7 @@ function isValidISODate(date: string): boolean {
  * @param {string} date - Date string.
  * @returns {boolean} - True if valid format false if not.
  */
-function isValidShortDate(date: string): boolean {
+export function isValidShortDate(date: string): boolean {
 
   // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
@@ -46,7 +46,7 @@ function isValidShortDate(date: string): boolean {
  * @param {string} date - Date string.
  * @returns {boolean} - True if valid format false if not.
  */
-function isValidLongDate(date: string): boolean {
+export function isValidLongDate(date: string): boolean {
   try {
     const LONG_DATE_REGEX: RegExp =
       /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
@@ -82,7 +82,7 @@ function isValidLongDate(date: string): boolean {
  * @param {string} month - Month string.
  * @returns {number} - Number of a month. (0-11)
  */
-function getMonthNumber(month: string): number {
+export function getMonthNumber(month: string): number {
   const validMonths: { [key: string]: number } = {
     January: 0,
     February: 1,
