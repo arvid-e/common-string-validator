@@ -17,6 +17,8 @@ export function isValidDate(date: string): boolean {
  * @returns {boolean} - True if valid format false if not.
  */
 function isValidISODate(date: string): boolean {
+
+  // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
@@ -30,6 +32,8 @@ function isValidISODate(date: string): boolean {
  * @returns {boolean} - True if valid format false if not.
  */
 function isValidShortDate(date: string): boolean {
+
+  // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
@@ -57,7 +61,7 @@ function isValidLongDate(date: string): boolean {
       return false;
     }
     const dateObj = new Date(`${month} ${day}, ${year}`);
-
+    console.log(dateObj);
     const dateIsValid =
       !isNaN(dateObj.getTime()) &&
       dateObj.getFullYear() === Number(year) &&
@@ -95,6 +99,7 @@ function getMonthNumber(month: string): number {
   const validMonth = validMonths[month];
 
   if (!validMonth) {
+    console.log('invalid month');
     throw new Error('Invalid month string.');
   }
   return validMonth;
