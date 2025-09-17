@@ -12,7 +12,7 @@
 
     // For nodejs:
     "lib": ["esnext"],
-    "types": ["node"],
+    "types": ["vitest/globals"],
 
     // Other Outputs
     "sourceMap": true,
@@ -39,5 +39,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*"],
+
 }

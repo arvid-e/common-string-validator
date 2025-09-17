@@ -17,10 +17,13 @@ module.exports = [
         console: 'readonly',
         window: 'readonly',
         document: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
       },
       parser: parser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.eslint.json',
       },
     },
     rules: {
