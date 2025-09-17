@@ -4,6 +4,6 @@ export * from './validation/password.js';
 
 import { isValidDate } from './validation/date.js';
 
-const longDate = 'January 12, 2022';
+const longDate = '99/12/2025';
 const result = isValidDate(longDate);
 console.log(result);
