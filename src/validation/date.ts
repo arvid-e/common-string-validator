@@ -48,6 +48,9 @@ function isValidShortDate(date: string): boolean {
  */
 function isValidLongDate(date: string): boolean {
   try {
+    const test = getMonthNumber('January');
+    console.log('test: ', test);
+
     const LONG_DATE_REGEX: RegExp =
       /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
     const match = date.match(LONG_DATE_REGEX);
@@ -55,13 +58,15 @@ function isValidLongDate(date: string): boolean {
     if (!match?.groups) {
       return false;
     }
+
     const { month, day, year } = match.groups;
 
     if (!month || !day || !year) {
       return false;
     }
+
     const dateObj = new Date(`${month} ${day}, ${year}`);
-    console.log(dateObj);
+
     const dateIsValid =
       !isNaN(dateObj.getTime()) &&
       dateObj.getFullYear() === Number(year) &&
@@ -98,8 +103,7 @@ function getMonthNumber(month: string): number {
 
   const validMonth = validMonths[month];
 
-  if (!validMonth) {
-    console.log('invalid month');
+  if (validMonth === undefined) {
     throw new Error('Invalid month string.');
   }
   return validMonth;
