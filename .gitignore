@@ -13,3 +13,6 @@ dist/
 # npm log
 npm-debug.log*
 yarn-error.log*
+
+#Vitest
+coverage
