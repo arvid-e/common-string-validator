@@ -4,7 +4,7 @@ import {
   isValidISODate,
   isValidLongDate,
   isValidShortDate,
-} from '../validation/date.js';
+} from '../validation/date/date-helpers.js';
 
 describe('isValidDate()', () => {
   it('should return false on invalid date format', () => {

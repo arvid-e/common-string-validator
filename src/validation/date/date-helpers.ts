@@ -1,16 +1,4 @@
 /**
- * Validates a date string.
- *
- * @param {string} date - Date string.
- * @returns {boolean} - True if valid format false if not.
- */
-export function isValidDate(date: string): boolean {
-  return (
-    isValidISODate(date) || isValidShortDate(date) || isValidLongDate(date)
-  );
-}
-
-/**
  * Checks if a date string is in a valid ISO standard format.
  *
  * @param {string} date - Date string.
@@ -35,9 +23,28 @@ export function isValidShortDate(date: string): boolean {
   // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp =
     /^(?<day>\d{2})\/(?<month>\d{2})\/(?<year>\d{4})$/;
+
   const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-  return dateIsValid;
+  if (!dateIsValid) {
+    throw new Error('Invalid date format.');
+  }
+
+  const groups = date.match(SHORT_DATE_REGEX)?.groups;
+
+  if (!groups) {
+    throw new Error('No groups.');
+  }
+
+  if (!groups.day || !groups.month || !groups.year) {
+    throw new Error('Missing');
+  }
+
+  const year = Number(groups.year);
+  const month = Number(groups.month);
+  const day = Number(groups.day);
+
+  return hasValidDayAndMonth(year, month, day);
 }
 
 /**
@@ -104,4 +111,21 @@ export function getMonthNumber(month: string): number {
     throw new Error('Invalid month string.');
   }
   return validMonth;
+}
+
+export function hasValidDayAndMonth(
+  year: number,
+  month: number,
+  day: number,
+): boolean {
+  const validDate = new Date(year, month, day);
+
+  const validDay = validDate.getDay() === day;
+  const validMonth = validDate.getMonth() === month;
+
+  if (!validDay || !validMonth) {
+    return false;
+  }
+
+  return true;
 }
