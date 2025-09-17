@@ -1,5 +1,6 @@
 import { isValidDate } from '../main.js';
 import {
+  getMonthNumber,
   isValidISODate,
   isValidLongDate,
   isValidShortDate,
@@ -21,13 +22,13 @@ describe('isValidISODate()', () => {
   });
 
   it('should return false on invalid day input', () => {
-    const invalidDate = '99/11/2020';
+    const invalidDate = '2024-11-99';
     const result = isValidISODate(invalidDate);
     expect(result).toBe(false);
   });
 
   it('should return false on invalid month input', () => {
-    const invalidDate = '02/99/2020';
+    const invalidDate = '2024-99-02';
     const result = isValidISODate(invalidDate);
     expect(result).toBe(false);
   });
@@ -58,5 +59,28 @@ describe('isValidLongDate()', () => {
     const longDate = 'January 12, 2022';
     const result = isValidLongDate(longDate);
     expect(result).toBe(true);
+  });
+});
+
+describe('getMonthNumber()', () => {
+  it('should return correct month index on month string input', () => {
+    const month0 = 'January';
+    const result0 = getMonthNumber(month0);
+    const month1 = 'February';
+    const result1 = getMonthNumber(month1);
+    const month11 = 'December';
+    const result11 = getMonthNumber(month11);
+
+    expect(result0).toBe(0);
+    expect(result1).toBe(1);
+    expect(result11).toBe(11);
+  });
+
+  it('should throw error on invalid month string', () => {
+    const invalidMonth = 'Epril';
+
+    expect(() => getMonthNumber(invalidMonth)).toThrowError(
+      'Invalid month string.',
+    );
   });
 });
