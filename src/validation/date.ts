@@ -48,9 +48,6 @@ function isValidShortDate(date: string): boolean {
  */
 function isValidLongDate(date: string): boolean {
   try {
-    const test = getMonthNumber('January');
-    console.log('test: ', test);
-
     const LONG_DATE_REGEX: RegExp =
       /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
     const match = date.match(LONG_DATE_REGEX);
