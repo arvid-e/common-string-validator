@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/main.js",
     "test": "vitest",
+    "coverage": "vitest run --coverage",
     "format": "prettier --write .",
     "check-format": "prettier --check ."
   },
