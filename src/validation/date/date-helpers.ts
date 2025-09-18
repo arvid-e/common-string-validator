@@ -5,12 +5,24 @@
  * @returns {boolean} - True if valid format false if not.
  */
 export function isValidISODate(date: string): boolean {
-  // FIX: validate day, month and year.
-  const SHORT_DATE_REGEX: RegExp =
+  const ISO_DATE_REGEX: RegExp =
     /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
-  const dateIsValid = SHORT_DATE_REGEX.test(date);
 
-  return dateIsValid;
+  const regexGroups = date.match(ISO_DATE_REGEX)?.groups;
+
+  if (!regexGroups) {
+    return false;
+  }
+
+  if (!regexGroups.day || !regexGroups.month || !regexGroups.year) {
+    return false;
+  }
+
+  const year = Number(regexGroups.year);
+  const month = Number(regexGroups.month) - 1;
+  const day = Number(regexGroups.day);
+
+  return hasValidYearMonthDay(year, month, day);
 }
 
 /**
@@ -20,31 +32,24 @@ export function isValidISODate(date: string): boolean {
  * @returns {boolean} - True if valid format false if not.
  */
 export function isValidShortDate(date: string): boolean {
-  // FIX: validate day, month and year.
   const SHORT_DATE_REGEX: RegExp =
     /^(?<day>\d{2})\/(?<month>\d{2})\/(?<year>\d{4})$/;
 
-  const dateIsValid = SHORT_DATE_REGEX.test(date);
+  const regexGroups = date.match(SHORT_DATE_REGEX)?.groups;
 
-  if (!dateIsValid) {
-    throw new Error('Invalid date format.');
+  if (!regexGroups) {
+    return false;
   }
 
-  const groups = date.match(SHORT_DATE_REGEX)?.groups;
-
-  if (!groups) {
-    throw new Error('No groups.');
+  if (!regexGroups.day || !regexGroups.month || !regexGroups.year) {
+    return false;
   }
 
-  if (!groups.day || !groups.month || !groups.year) {
-    throw new Error('Missing');
-  }
+  const year = Number(regexGroups.year);
+  const month = Number(regexGroups.month) - 1;
+  const day = Number(regexGroups.day);
 
-  const year = Number(groups.year);
-  const month = Number(groups.month);
-  const day = Number(groups.day);
-
-  return hasValidDayAndMonth(year, month, day);
+  return hasValidYearMonthDay(year, month, day);
 }
 
 /**
@@ -57,26 +62,22 @@ export function isValidLongDate(date: string): boolean {
   try {
     const LONG_DATE_REGEX: RegExp =
       /^(?<month>[A-Za-z]+)\s(?<day>\d{1,2}),\s(?<year>\d{4}$)/;
-    const match = date.match(LONG_DATE_REGEX);
 
-    if (!match?.groups) {
+    const regexGroups = date.match(LONG_DATE_REGEX)?.groups;
+
+    if (!regexGroups) {
       return false;
     }
 
-    const { month, day, year } = match.groups;
-
-    if (!month || !day || !year) {
+    if (!regexGroups.month || !regexGroups.day || !regexGroups.year) {
       return false;
     }
 
-    const dateObj = new Date(`${month} ${day}, ${year}`);
+    const year = Number(regexGroups.year);
+    const month = getMonthNumber(regexGroups.month);
+    const day = Number(regexGroups.day);
 
-    const dateIsValid =
-      !isNaN(dateObj.getTime()) &&
-      dateObj.getFullYear() === Number(year) &&
-      dateObj.getMonth() === getMonthNumber(month);
-
-    return dateIsValid;
+    return hasValidYearMonthDay(year, month, day);
   } catch (_error) {
     // Ignoring the caught error.
     return false;
@@ -113,17 +114,18 @@ export function getMonthNumber(month: string): number {
   return validMonth;
 }
 
-export function hasValidDayAndMonth(
+export function hasValidYearMonthDay(
   year: number,
   month: number,
   day: number,
 ): boolean {
   const validDate = new Date(year, month, day);
 
-  const validDay = validDate.getDay() === day;
+  const validDay = validDate.getDate() === day;
   const validMonth = validDate.getMonth() === month;
+  const validYear = validDate.getFullYear() === year;
 
-  if (!validDay || !validMonth) {
+  if (!validDay || !validMonth || !validYear) {
     return false;
   }
 
