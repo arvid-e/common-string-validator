@@ -3,6 +3,7 @@ import {
   containsLowerCaseLetter,
   containsSpecialCharacter,
   containsUppercaseLetter,
+  containsNumber,
   hasValidLength,
 } from '../validation/password/password-helpers.js';
 
@@ -30,6 +31,20 @@ describe('hasValidLength()', () => {
   it('should return false on incorrect string length', () => {
     const invalidString = 'abc';
     const result = hasValidLength(invalidString);
+    expect(result).toBe(false);
+  });
+});
+
+describe('containsNumber()', () => {
+  it('should return true if password string contains a number', () => {
+    const validString = 'abc123ABC';
+    const result = containsNumber(validString);
+    expect(result).toBe(true);
+  });
+
+  it('should return false if password doesnt contain a number', () => {
+    const invalidString = 'myPassword';
+    const result = containsNumber(invalidString);
     expect(result).toBe(false);
   });
 });

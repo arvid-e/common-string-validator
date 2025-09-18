@@ -25,6 +25,19 @@ export function containsLowerCaseLetter(password: string): boolean {
 }
 
 /**
+ * Checks if the password string contains at least one number.
+ *
+ * @param {string} password - Password string.
+ * @returns {boolean} - True if string contains a number, false if not.
+ */
+export function containsNumber(password: string): boolean {
+  const NUMBER_REGEX = /[0-9]/;
+  const hasNumber = NUMBER_REGEX.test(password);
+
+  return hasNumber;
+}
+
+/**
  * Checks if the password string contains at least one special character.
  *
  * @param {string} password - Password string.
