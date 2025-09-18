@@ -1,26 +1,10 @@
 /**
- * Validates a password string making sure it is a strong enough password.
- *
- * @param {string} password - Password string to validate.
- * @returns {boolean} - True if valid password string, false if invalid.
- */
-export function isValidPassword(password: string): boolean {
-  return (
-    isString(password) &&
-    containsLowerCaseLetter(password) &&
-    containsUppercaseLetter(password) &&
-    containsSpecialCharacter(password) &&
-    hasValidLength(password)
-  );
-}
-
-/**
  * Checks if the password string contains at least one upper case letter.
  *
  * @param {string} password - Password string.
  * @returns {boolean} - True if string contains an upper case letter, false if not.
  */
-function containsUppercaseLetter(password: string): boolean {
+export function containsUppercaseLetter(password: string): boolean {
   const UPPER_CASE_REGEX = /[A-Z]/;
   const hasUppercaseLetter = UPPER_CASE_REGEX.test(password);
 
@@ -33,7 +17,7 @@ function containsUppercaseLetter(password: string): boolean {
  * @param {string} password - Password string.
  * @returns {boolean} - True if string contains an lower case letter, false if not.
  */
-function containsLowerCaseLetter(password: string): boolean {
+export function containsLowerCaseLetter(password: string): boolean {
   const LOWER_CASE_REGEX = /[a-z]/;
   const hasLowerCaseLetter = LOWER_CASE_REGEX.test(password);
 
@@ -46,7 +30,7 @@ function containsLowerCaseLetter(password: string): boolean {
  * @param {string} password - Password string.
  * @returns {boolean} - True if it contains a special character, false if not.
  */
-function containsSpecialCharacter(password: string): boolean {
+export function containsSpecialCharacter(password: string): boolean {
   const SPECIAL_CHARACTER_REGEX = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 
   const hasSpecialCharacter = SPECIAL_CHARACTER_REGEX.test(password);
@@ -60,7 +44,7 @@ function containsSpecialCharacter(password: string): boolean {
  * @param {string} password - Password string.
  * @returns {boolean} - True if password string is long enough, false if not.
  */
-function hasValidLength(password: string): boolean {
+export function hasValidLength(password: string): boolean {
   return password.length >= 8;
 }
 
@@ -70,6 +54,6 @@ function hasValidLength(password: string): boolean {
  * @param {string} password - Password string.
  * @returns {boolean} - True if password string is a string, false if not.
  */
-function isString(password: string): boolean {
+export function isString(password: string): boolean {
   return typeof password === 'string';
 }
