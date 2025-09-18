@@ -110,6 +110,14 @@ export function getMonthNumber(month: string): number | undefined {
   return validMonth;
 }
 
+/**
+ * Validates that if the combination of a year, month and day is a real valid date.
+ *
+ * @param {number} year - Year number.
+ * @param {number} month - Month index number (0-11).
+ * @param {number} day - Day of the month (1-31).
+ * @returns {boolean} - True if valid, false if not.
+ */
 export function hasValidYearMonthDay(
   year: number,
   month: number,
