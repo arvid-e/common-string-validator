@@ -76,11 +76,9 @@ describe('getMonthNumber()', () => {
     expect(result11).toBe(11);
   });
 
-  it('should throw error on invalid month string', () => {
+  it('should return undefined on invalid month string', () => {
     const invalidMonth = 'Epril';
-
-    expect(() => getMonthNumber(invalidMonth)).toThrowError(
-      'Invalid month string.',
-    );
+    const result = getMonthNumber(invalidMonth);
+    expect(result).toBeUndefined();
   });
 });
