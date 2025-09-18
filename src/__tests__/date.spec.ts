@@ -60,6 +60,12 @@ describe('isValidLongDate()', () => {
     const result = isValidLongDate(longDate);
     expect(result).toBe(true);
   });
+
+  it('should return false on invalid long date format', () => {
+    const longDate = 'Janry 12, 2022';
+    const result = isValidLongDate(longDate);
+    expect(result).toBe(false);
+  });
 });
 
 describe('getMonthNumber()', () => {
