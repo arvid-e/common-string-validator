@@ -7,6 +7,7 @@
 export function isValidEmail(email: string): boolean {
   const EMAIL_VALIDATION_PARTS_REGEX = [
     '^', // Start of the string
+    '(?!.*[._+-]{2})', // Make sure there are no consecutive special characters
     '[A-Za-z0-9]', // Local name must start with a letter or number
     '(?:[A-Za-z0-9._+-]*[A-Za-z0-9])?', // Followed by a mix of allowed characters
     '@', // Separator
