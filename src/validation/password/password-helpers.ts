@@ -47,13 +47,3 @@ export function containsSpecialCharacter(password: string): boolean {
 export function hasValidLength(password: string): boolean {
   return password.length >= 8;
 }
-
-/**
- * Checks if the password string is a string type.
- *
- * @param {string} password - Password string.
- * @returns {boolean} - True if password string is a string, false if not.
- */
-export function isString(password: string): boolean {
-  return typeof password === 'string';
-}

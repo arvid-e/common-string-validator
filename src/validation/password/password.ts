@@ -3,7 +3,6 @@ import {
   containsSpecialCharacter,
   containsUppercaseLetter,
   hasValidLength,
-  isString,
 } from './password-helpers.js';
 
 /**
@@ -14,10 +13,9 @@ import {
  */
 export function isValidPassword(password: string): boolean {
   return (
-    isString(password) &&
+    hasValidLength(password) &&
     containsLowerCaseLetter(password) &&
     containsUppercaseLetter(password) &&
-    containsSpecialCharacter(password) &&
-    hasValidLength(password)
+    containsSpecialCharacter(password)
   );
 }
