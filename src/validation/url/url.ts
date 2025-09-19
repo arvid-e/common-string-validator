@@ -35,7 +35,7 @@ export class UrlValidator {
   }
 
   private hasValidProtocol(url: string): boolean {
-    const PROTOCOL_REGEX: RegExp = /(?<protocol>https?:\/\/)/;
+    const PROTOCOL_REGEX: RegExp = /^(?<protocol>https?:\/\/)/;
     const hasValidProtocol = PROTOCOL_REGEX.test(url);
 
     return hasValidProtocol;
