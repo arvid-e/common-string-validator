@@ -1,78 +1,73 @@
-import { isValidPassword } from '../validation/password/password.js';
-import {
-  containsLowerCaseLetter,
-  containsSpecialCharacter,
-  containsUppercaseLetter,
-  containsNumber,
-  hasValidLength,
-} from '../validation/password/password-helpers.js';
+import { PasswordValidator } from '../main.js';
+
+const passwordValidator = new PasswordValidator();
 
 describe('isValidPassword()', () => {
   it('should return true on a valid password string', () => {
     const validString = '#akjMN11*';
-    const result = isValidPassword(validString);
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false on incorrect string length', () => {
-    const invalidString = 'password';
-    const result = isValidPassword(invalidString);
+    const invalidString = 'aB#';
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
 
 describe('hasValidLength()', () => {
   it('should return true on correct string length', () => {
-    const validString = 'abc123ABC';
-    const result = hasValidLength(validString);
+    const validString = 'abc123ABC#';
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false on incorrect string length', () => {
     const invalidString = 'abc';
-    const result = hasValidLength(invalidString);
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
 
 describe('containsNumber()', () => {
   it('should return true if password string contains a number', () => {
-    const validString = 'abc123ABC';
-    const result = containsNumber(validString);
+    const validString = 'abc123ABC#';
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false if password doesnt contain a number', () => {
-    const invalidString = 'myPassword';
-    const result = containsNumber(invalidString);
+    const invalidString = 'myPassword#';
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
 
 describe('containsLowerCaseLetter()', () => {
   it('should return true if string contains a lower case letter', () => {
-    const validString = 'abc123ABC123';
-    const result = containsLowerCaseLetter(validString);
+    const validString = 'abc123ABC123#';
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false if string doesnt contains a lower case letter', () => {
-    const invalidString = 'ABC123';
-    const result = containsLowerCaseLetter(invalidString);
+    const invalidString = 'ABC123##--';
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
 
 describe('containsUpperCaseLetter()', () => {
   it('should return true if string contains a upper case letter', () => {
-    const validString = 'abc123ABC123';
-    const result = containsUppercaseLetter(validString);
+    const validString = 'abc123ABC123#';
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false if string doesnt contains a upper case letter', () => {
-    const invalidString = 'abc123';
-    const result = containsUppercaseLetter(invalidString);
+    const invalidString = 'abc123##--';
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
@@ -80,13 +75,13 @@ describe('containsUpperCaseLetter()', () => {
 describe('containsSpecialCharacter()', () => {
   it('should return true if string contains a special character', () => {
     const validString = 'abc123ABC123#*';
-    const result = containsSpecialCharacter(validString);
+    const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
   });
 
   it('should return false if string doesnt contains a upper case letter', () => {
     const invalidString = 'abc123';
-    const result = containsSpecialCharacter(invalidString);
+    const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
 });
