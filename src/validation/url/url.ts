@@ -1,16 +1,14 @@
-interface UrlsParts {
-  protocol: string;
-  domainName: string;
-  path?: string;
-  query?: string;
-  fragment?: string;
-}
-
 export class UrlValidator {
-  constructor() {}
+  urlRegex: RegExp;
+
+  constructor() {
+    this.urlRegex = this.contructUrlRegex();
+  }
 
   public isValidUrl(url: string): boolean {
+    const urlIsValid = this.extractAndValidateUrl(url, this.urlRegex);
 
+    return urlIsValid;
   }
 
   private contructUrlRegex(): RegExp {
@@ -46,8 +44,22 @@ export class UrlValidator {
     return urlRegex;
   }
 
-  private hasValidHostNameLength(hostname: string): boolean {
-    if (hostname.length > 255) {
+  private extractAndValidateUrl(urlString: string, urlRegex: RegExp): boolean {
+    const regexGroups = urlString.match(urlRegex)?.groups;
+
+    if (!regexGroups) {
+      return false;
+    }
+
+    if (!regexGroups.domainName) {
+      return false;
+    }
+
+    return this.hasValidDomainNameLength(regexGroups.domainName);
+  }
+
+  private hasValidDomainNameLength(domainName: string): boolean {
+    if (domainName.length > 255) {
       return false;
     }
 
