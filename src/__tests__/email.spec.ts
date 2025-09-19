@@ -1,15 +1,17 @@
-import { isValidEmail } from '../validation/email/email.js';
+import { EmailValidator } from '../main.js';
+
+const emailValidator = new EmailValidator();
 
 describe('isValidEmail()', () => {
   it('should return true on valid email string', () => {
     const validEmail = 'kalle.kollen@gmail.co.jp';
-    const result = isValidEmail(validEmail);
+    const result = emailValidator.isValidEmail(validEmail);
     expect(result).toBe(true);
   });
 
   it('should return false on too short top level domain name', () => {
     const tooShort = 'kalle.kollen@gmail.c';
-    const tooShortEndingResult = isValidEmail(tooShort);
+    const tooShortEndingResult = emailValidator.isValidEmail(tooShort);
     expect(tooShortEndingResult).toBe(false);
   });
 
@@ -17,8 +19,10 @@ describe('isValidEmail()', () => {
     const invalidCharacter = 'kalle#kollen@gmail.com';
     const invalidCharacter2 = 'kalle.kollen@gma*il.com';
 
-    const invalidCharacterResult = isValidEmail(invalidCharacter);
-    const invalidCharacterResult2 = isValidEmail(invalidCharacter2);
+    const invalidCharacterResult =
+      emailValidator.isValidEmail(invalidCharacter);
+    const invalidCharacterResult2 =
+      emailValidator.isValidEmail(invalidCharacter2);
 
     expect(invalidCharacterResult).toBe(false);
     expect(invalidCharacterResult2).toBe(false);
@@ -28,10 +32,10 @@ describe('isValidEmail()', () => {
     const consecutivePeriodLocalName = 'kalle..kollen@gmail.com';
     const consecutivePeriodDomainName = 'kalle.kollen@gmail..com';
 
-    const consecutivePeriodLocalNameResult = isValidEmail(
+    const consecutivePeriodLocalNameResult = emailValidator.isValidEmail(
       consecutivePeriodLocalName,
     );
-    const consecutivePeriodDomainNameResult = isValidEmail(
+    const consecutivePeriodDomainNameResult = emailValidator.isValidEmail(
       consecutivePeriodDomainName,
     );
 
