@@ -15,9 +15,11 @@ export class UrlValidator {
     const protocolRegexStrings = ['^(?<protocol>https?:\/\/)']; // Starts with http:// or https://
 
     const hostnameRegexStrings = [
+      '(?<hostname>', // Make group for hostname
       '[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?', //  Hostname starts and ends with a letter or number
-      '(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*', // Optional labels must be separated by a period
-      '\\.[A-Za-z]{2,63}', // Ending top level domain must be 2-63 letters
+      '(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*', // Optional labels must be separated by a period
+      '\.[A-Za-z]{2,63}', // Ending top level domain must be 2-63 letters
+      ')', // Group closing parenthesis
     ];
 
     const optionalPortRegexStrings = ['(?::\d{1,5})?'];
@@ -45,20 +47,20 @@ export class UrlValidator {
   }
 
   private extractAndValidateUrl(urlString: string, urlRegex: RegExp): boolean {
-    const regexGroups = urlString.match(urlRegex)?.groups;
+    const regexGroups = urlString.match(urlRegex);
 
-    if (!regexGroups) {
+    if (!regexGroups?.groups) {
       return false;
     }
 
-    if (!regexGroups.domainName) {
+    if (!regexGroups.groups.hostname) {
       return false;
     }
 
-    return this.hasValidDomainNameLength(regexGroups.domainName);
+    return this.hasValidHostnameLength(regexGroups.groups.hostname);
   }
 
-  private hasValidDomainNameLength(domainName: string): boolean {
+  private hasValidHostnameLength(domainName: string): boolean {
     if (domainName.length > 255) {
       return false;
     }
