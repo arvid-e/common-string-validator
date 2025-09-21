@@ -10,7 +10,7 @@ describe('isValidPassword()', () => {
   });
 
   it('should return false on incorrect string length', () => {
-    const invalidString = 'aB#';
+    const invalidString = 'aA#1';
     const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
@@ -21,12 +21,6 @@ describe('hasValidLength()', () => {
     const validString = 'abc123ABC#';
     const result = passwordValidator.isValidPassword(validString);
     expect(result).toBe(true);
-  });
-
-  it('should return false on incorrect string length', () => {
-    const invalidString = 'abc';
-    const result = passwordValidator.isValidPassword(invalidString);
-    expect(result).toBe(false);
   });
 });
 
@@ -80,7 +74,7 @@ describe('containsSpecialCharacter()', () => {
   });
 
   it('should return false if string doesnt contains a upper case letter', () => {
-    const invalidString = 'abc123';
+    const invalidString = 'abc123abc##';
     const result = passwordValidator.isValidPassword(invalidString);
     expect(result).toBe(false);
   });
