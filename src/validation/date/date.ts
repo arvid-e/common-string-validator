@@ -1,3 +1,6 @@
+/**
+ * Class that checks if a date string is in a valid format.
+ */
 export class DateValidator {
   constructor() {}
 

@@ -1,3 +1,6 @@
+/**
+ * Class used to make sure a password string is not too simple.
+ */
 export class PasswordValidator {
   constructor() {}
 

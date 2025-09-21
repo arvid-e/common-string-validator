@@ -1,3 +1,6 @@
+/**
+ * Class used for checking that E-mail string follows commonly used standards.
+ */
 export class EmailValidator {
   emailRegex: RegExp;
 
