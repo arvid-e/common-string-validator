@@ -15,7 +15,7 @@ export class UsernameValidator {
       this.hasValidLength(username) &&
       this.hasAllowedCharacters(username) &&
       this.hasLetter(username) &&
-      !this.hasConsecutiveSpecialCharacters(username)
+      this.hasValidCharacterSequence(username)
     );
   }
 
@@ -44,14 +44,14 @@ export class UsernameValidator {
   }
 
   /**
-   * Checks if a string has consecutive special characters.
+   * Returns true if a string has no consecutive allowed special characters.
    *
    * @param {string} username - Username string.
    * @returns {boolean} - True if string has consecutive special characters, false if not.
    */
-  private hasConsecutiveSpecialCharacters(username: string): boolean {
+  private hasValidCharacterSequence(username: string): boolean {
     const hasConsecutiveSpecialCharactersRegex: RegExp =
-      /(?!.*[_-]{2})[A-Za-z]/;
+      /^(?!.*[_-]{2})[A-Za-z-_]+$/;
 
     return hasConsecutiveSpecialCharactersRegex.test(username);
   }
