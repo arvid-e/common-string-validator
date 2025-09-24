@@ -1,14 +1,65 @@
 # Validator Module
 
-This is a module used for validating different kinds of strings and user input.
+The purpose of this module is to provide validators for commonly used strings. This module makes sure that these different kinds of strings are in the correct format so that they can be used without problems in an application. 
 
-## Provided validators
-* **Date validation**
-  * Short, long and ISO standard format.
-* **E-mail validation**
-  * Using the most commonly used E-mail standard used by E-mail providers such as Google and Microsoft.
-* **Password validation**
-  * Make sure the password is safe by forcing character variation and a minimum length.
+
+## Provided validation
+
+### Date validation
+Validates a date string in three different formats:  
+* **Short format**
+  * 01/01/2025
+* **Long format**
+  * January 1, 2025
+* **ISO standard format**: 
+  * 2025:01:01
+
+### E-mail validation
+Validates using the most commonly used E-mail standard used by the most common E-mail providers.
+
+* **Valid E-mail examples**
+  * name@provider.com
+  * firstname.lastname@provider.com
+  * firstname-lastname@provider.company.org
+
+
+
+
+
+### Password validation
+  Validates a password string by making sure it contains character variation and a minimum length.
+
+  * **Rules**
+    * Has a uppercase letter.
+    * Has a lowercase letter.
+    * Has a Number.
+    * Has a special character.
+    * Is at least 12 characters long.
+
+
+### Username validation
+Validates a username string to make sure that it is easy to read.
+
+* **Rules**
+  * Can only contain letters, dashes and underscores.
+  * Must be between 3 and 12 characters long.
+  * Cannot have consecutive dashes or underscores.
+
+### URL Validation
+Validates an URL string to make sure it is in a usable format for HTTP requests.
+
+* **Valid format**
+  * scheme://[:port]/path[?query][#fragment]
+  * **⚠** Only validates http or https schemes.
+
+## Use case examples
+* API endpoints
+* Account creation
+* User registration
+* Content Management Systems
+
+
+
 
 ## Installation
 
