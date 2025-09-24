@@ -118,6 +118,44 @@ console.log(`Is "${password}" a valid password?`, isValidPassword(password));
 // Output: Is 'abc123' a valid password? false
 ```
 
+### Username validation
+```
+import { isValidUsername } from 'common-string-validator';
+
+// Valid password
+const username = 'Johnny';
+console.log(`Is "${username}" a valid username?`, isValidUsername(username));
+
+// Output: Is 'Johnny' a valid username? true
+
+
+// Invalid username
+const username = 'J@nne__L#rss0n';
+console.log(`Is "${username}" a valid username?`, isValidUsername(username));
+
+// Output: Is 'J@nne__L#rss0n' a valid username? false
+
+```
+
+### URL validation
+```
+import { isValidUrl } from 'common-string-validator';
+
+// Valid URL
+const url = 'https://company-name.work.org';
+console.log(`Is "${url}" a valid URL?`, isValidUrl(url));
+
+// Output: Is 'https://company-name.work.org' a valid URL? true
+
+
+// Invalid URL
+const url = 'https://company..name.work.c';
+console.log(`Is "${username}" a valid username?`, isValidUrl(url));
+
+// Output: Is 'Johnny' a valid url? false
+
+```
+
 ## Tests
 
 
