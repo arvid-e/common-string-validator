@@ -1,5 +1,5 @@
 {
-  "name": "1dv610-l2",
+  "name": "common-string-validator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arvid-e/1dv610-L2.git"
+    "url": "git+https://github.com/arvid-e/common-string-validator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/arvid-e/1dv610-L2/issues"
+    "url": "https://github.com/arvid-e/common-string-validator/issues"
   },
-  "homepage": "https://github.com/arvid-e/1dv610-L2#readme",
+  "homepage": "https://github.com/arvid-e/common-string-validator#readme",
   "devDependencies": {
     "@types/node": "^24.3.0",
     "@typescript-eslint/eslint-plugin": "^8.43.0",

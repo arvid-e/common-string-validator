@@ -23,9 +23,6 @@ Validates using the most commonly used E-mail standard used by the most common E
   * firstname-lastname@provider.company.org
 
 
-
-
-
 ### Password validation
   Validates a password string by making sure it contains character variation and a minimum length.
 
@@ -59,17 +56,15 @@ Validates an URL string to make sure it is in a usable format for HTTP requests.
 * Content Management Systems
 
 
-
-
 ## Installation
 
-`npm install [package name]`
+`npm install common-string-validator`
 
 ## Usage examples
 
 ### Date validation
 ```
-import { isValidDate } from '[package name]';
+import { isValidDate } from 'common-string-validator';
 
 // Correct ISO Standard Format
 const isoDate = '2024-05-15';
@@ -89,7 +84,7 @@ console.log(`Is "${longDate}" a valid date?`, isValidDate(longDate));
 
 ### Email validation
 ```
-import { isValidEmail } from '[package name]';
+import { isValidEmail } from 'common-string-validator';
 
 // Valid E-mail
 const email = 'john.doe@gmail.com';
@@ -107,7 +102,7 @@ console.log(`Is "${email}" a valid E-mail?`, isValidEmail(email));
 
 ### Password validation
 ```
-import { isValidPassword } from '[package name]';
+import { isValidPassword } from 'common-string-validator';
 
 // Valid password
 const password = 'Sklr99m##dL';
