@@ -15,6 +15,12 @@ describe('isValidEmail()', () => {
     expect(tooShortEndingResult).toBe(false);
   });
 
+  it('should return false on no "@" character', () => {
+    const tooShort = 'kalle.kollengmail.com';
+    const tooShortEndingResult = emailValidator.isValidEmail(tooShort);
+    expect(tooShortEndingResult).toBe(false);
+  });
+
   it('should return false on invalid characters', () => {
     const invalidCharacter = 'kalle#kollen@gmail.com';
     const invalidCharacter2 = 'kalle.kollen@gma*il.com';

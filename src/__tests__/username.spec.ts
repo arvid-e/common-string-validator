@@ -9,7 +9,7 @@ describe('isValidUsername()', () => {
     expect(result).toBe(true);
   });
 
-  it('should return false on consecutive non letter character in hostname', () => {
+  it('should return false on consecutive non letter characters', () => {
     const invalidUsername = 'Coola--Bert';
     const result = usernameValidator.isValidUsername(invalidUsername);
     expect(result).toBe(false);

@@ -1,9 +1,9 @@
-# Validator Module
+# Common String Validator Module
 
 The purpose of this module is to provide validators for commonly used strings. This module makes sure that these different kinds of strings are in the correct format so that they can be used without problems in an application. 
 
 
-## Provided validation
+# Validators
 
 ### Date validation
 Validates a date string in three different formats:  
@@ -29,7 +29,7 @@ Validates using the most commonly used E-mail standard used by the most common E
   * **Rules**
     * Has a uppercase letter.
     * Has a lowercase letter.
-    * Has a Number.
+    * Has a number.
     * Has a special character.
     * Is at least 12 characters long.
 
@@ -49,7 +49,7 @@ Validates an URL string to make sure it is in a usable format for HTTP requests.
   * scheme://[:port]/path[?query][#fragment]
   * **⚠** Only validates http or https schemes.
 
-## Use case examples
+## Example use cases
 * API endpoints
 * Account creation
 * User registration
@@ -60,7 +60,7 @@ Validates an URL string to make sure it is in a usable format for HTTP requests.
 
 `npm install common-string-validator`
 
-## Usage examples
+## Code examples
 
 ### Date validation
 ```
@@ -156,12 +156,134 @@ console.log(`Is "${username}" a valid username?`, isValidUrl(url));
 
 ```
 
-## Tests
+# Tests
 
-Unit tests has been created for each validator in this module using **Vitest** and can be found in the src/_\_tests__/ folder. 
+Unit tests has been created for each validator in this module using **Vitest** and can be found in the src/_\_tests__/ folder. A summary of the test results can be found at the end of the Tests section.
+
+## Running the tests
+
+`npm run vitest`
+
+## Test requirements
+
+### Date validator
+ 
+* Positive testing
+  * Valid Short format date
+  * Valid Long format date
+  * Valid ISO format date
+
+* Negative testing
+  * Day number over 31 or under 1.
+  * Month number over 12 or under 1.
+  * Year number under 1.
+  * Month name in long format spelt wrong.
+  * Date doesn't exist (e.g February 31).
+  * No comma in long date.
 
 
-### Test results
+| Method | Test | Result |
+|---|---|---|
+| isValidISODate() | Unit test | PASS |
+| isValidShortDate() | Unit test | PASS |
+| isValidLongDate() | Unit test | PASS |
+| isValidDate() | Unit test | PASS |
+
+---
+
+### E-mail validator
+ 
+* Positive testing
+  * Valid E-mail string.
+
+
+* Negative testing
+  * Too short top level domain name.
+  * Invalid characters.
+  * Consecutive allowed special character.
+  * Doesn't contain "@" character.
+
+
+
+| Method | Test | Result |
+|---|---|---|
+| isValidEmail() | Unit test | PASS |
+
+---
+
+### Password validator
+ 
+* Positive testing
+  * Valid password string.
+  * Contains lower case letter.
+  * Contains upper case letter.
+  * Contains number.
+  * Contains special character.
+  * Valid password string length.
+
+
+* Negative testing
+  * Too short password.
+  * Doesn't contain lower case letter.
+  * Doesn't contain upper case letter.
+  * Doesn't contain number.
+  * Doesn't contain special character.
+
+
+
+| Method | Test | Result |
+|---|---|---|
+| isValidPassword() | Unit test | PASS |
+| hasValidLength() | Unit test | PASS |
+| containsNumber() | Unit test | PASS |
+| containsLowerCaseLetter() | Unit test | PASS |
+| containsUpperCaseLetter() | Unit test | PASS |
+| containsSpecialCharacter() | Unit test | PASS |
+
+---
+
+### URL validator
+ 
+* Positive testing
+  * Valid URL string.
+
+* Negative testing
+  * Consecutive periods in hostname.
+  * Too long hostname.
+  * Too long port number.
+  * Invalid protocol.
+
+
+| Method | Test | Result |
+|---|---|---|
+| isValidUrl() | Unit test | PASS |
+
+---
+
+### Username validator
+ 
+* Positive testing
+  * Valid username string.
+
+* Negative testing
+  * Consecutive allowed special characters.
+  * Too long username.
+  * Too short username.
+  * Invalid characters.
+
+
+| Method | Test | Result |
+|---|---|---|
+| isValidUrl() | Unit test | PASS |
+
+## Test results summary
+
+![Test report](images/test-report.png "Title")
+
+
+
+
+
 
 
 

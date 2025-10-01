@@ -15,14 +15,14 @@ describe('isValidUrl()', () => {
     expect(result).toBe(false);
   });
 
-  it('should return false on too long hosname', () => {
+  it('should return false on too long hostname', () => {
     const longString = 'a'.repeat(256);
     const invalidUrl = `https://${longString}.com`;
     const result = urlValidator.isValidUrl(invalidUrl);
     expect(result).toBe(false);
   });
 
-  it('should return false on invalid port', () => {
+  it('should return false on too long port number', () => {
     const invalidUrl = 'https://mysite.more.com:9999999';
     const result = urlValidator.isValidUrl(invalidUrl);
     expect(result).toBe(false);

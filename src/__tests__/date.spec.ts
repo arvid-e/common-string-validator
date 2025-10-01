@@ -28,6 +28,12 @@ describe('isValidISODate()', () => {
     const result = dateValidator.isValidDate(invalidDate);
     expect(result).toBe(false);
   });
+
+  it('should return false on invalid year input', () => {
+    const invalidDate = '0-01-02';
+    const result = dateValidator.isValidDate(invalidDate);
+    expect(result).toBe(false);
+  });
 });
 
 describe('isValidShortDate()', () => {
@@ -59,6 +65,12 @@ describe('isValidLongDate()', () => {
 
   it('should return false on invalid long date format', () => {
     const longDate = 'Janry 12, 2022';
+    const result = dateValidator.isValidDate(longDate);
+    expect(result).toBe(false);
+  });
+
+  it('should return false on no comma in long date format', () => {
+    const longDate = 'January 12 2022';
     const result = dateValidator.isValidDate(longDate);
     expect(result).toBe(false);
   });
