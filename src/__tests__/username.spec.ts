@@ -1,4 +1,4 @@
-import { UsernameValidator } from '../validation/username/username.js';
+import { UsernameValidator } from '../main.js';
 
 const usernameValidator = new UsernameValidator();
 

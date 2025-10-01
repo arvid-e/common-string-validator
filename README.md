@@ -158,6 +158,11 @@ console.log(`Is "${username}" a valid username?`, isValidUrl(url));
 
 ## Tests
 
+Unit tests has been created for each validator in this module using **Vitest** and can be found in the src/_\_tests__/ folder. 
+
+
+### Test results
+
 
 
 
