@@ -30,11 +30,12 @@ export class DateValidator {
 
     const regexGroups = date.match(ISO_DATE_REGEX)?.groups;
 
-    if (!regexGroups) {
-      return false;
-    }
-
-    if (!regexGroups.day || !regexGroups.month || !regexGroups.year) {
+    if (
+      !regexGroups ||
+      !regexGroups.day ||
+      !regexGroups.month ||
+      !regexGroups.year
+    ) {
       return false;
     }
 
