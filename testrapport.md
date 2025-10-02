@@ -88,6 +88,9 @@ Unit tests has been created for each validator in this module using **Vitest** a
  
 * Positive testing
   * Valid URL string.
+  * Valid port number.
+  * Valid query.
+  * Valid fragment.
 
 * Negative testing
   * Consecutive periods in hostname.

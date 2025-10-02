@@ -58,11 +58,12 @@ export class DateValidator {
 
     const regexGroups = date.match(SHORT_DATE_REGEX)?.groups;
 
-    if (!regexGroups) {
-      return false;
-    }
-
-    if (!regexGroups.day || !regexGroups.month || !regexGroups.year) {
+    if (
+      !regexGroups ||
+      !regexGroups.month ||
+      !regexGroups.day ||
+      !regexGroups.year
+    ) {
       return false;
     }
 
@@ -85,11 +86,12 @@ export class DateValidator {
 
     const regexGroups = date.match(LONG_DATE_REGEX)?.groups;
 
-    if (!regexGroups) {
-      return false;
-    }
-
-    if (!regexGroups.month || !regexGroups.day || !regexGroups.year) {
+    if (
+      !regexGroups ||
+      !regexGroups.month ||
+      !regexGroups.day ||
+      !regexGroups.year
+    ) {
       return false;
     }
 
