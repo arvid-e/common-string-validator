@@ -17,21 +17,22 @@ Validates a date string in three different formats:
 
 ### Email validation
 
-Validates using the most commonly used E-mail standard used by the most common E-mail providers.
+Validates using the the RFC 5322 Internet Message Format standard.
 
 **Format** : local-part@domain.tld
 
 - **Rules**
-  - Can only contain letters, numbers, undercores, dashes and hyphens in the local name part.
-  - Must contain exactly one "@" symbol.
+  - The local name can only contain letters, numbers and ASCII printable characters (.!#$%&'*+-/=?^_`{|}~)
+  - The domain name can only contains letters, numbers and dashes.
+  - The Email string must contain exactly one "@" symbol.
   - No consecutive special characters.
   - No special character first, last or next to the "@" symbol.
   - Top level domain name must be at least 2 characters long.
   - Local part maximum length is 64 characters.
-  - Domain name maximum length is 64 characters.
+  - Domain name maximum length is 64 characters each.
   - Maximum total length is 254 characters.
 
-- **Valid E-mail examples**
+- **Valid Email examples**
   - name@provider.com
   - firstname.lastname@provider.com
   - firstname-lastname@provider.company.org
@@ -58,11 +59,13 @@ Validates a username string to make sure that it is easy to read.
 
 ### URL Validation
 
-Validates an URL string to make sure it is in a usable format for HTTP requests.
+Validates an URL string to make sure it is in a usable format for HTTP requests. Only validates http or https schemes.
 
-- **Valid format**
-  - scheme://[:port]/path[?query][#fragment]
-  - **⚠** Only validates http or https schemes.
+**Format**: scheme://[hostname][:port]/path[?query][#fragment]
+
+- **Valid URL examples**
+  - https://my.site.com
+  - http://example:8000/home
 
 ## Example use cases
 

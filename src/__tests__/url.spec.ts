@@ -28,6 +28,31 @@ describe('isValidUrl()', () => {
     expect(result).toBe(false);
   });
 
+  it('should return true on correct port number', () => {
+    const validUrl = 'https://mysite.more.com:8000';
+    const result = urlValidator.isValidUrl(validUrl);
+    expect(result).toBe(true);
+  });
+
+  it('should return true on correct path', () => {
+    const validUrl = 'https://mysite.more.com:8000/home';
+    const result = urlValidator.isValidUrl(validUrl);
+    expect(result).toBe(true);
+  });
+
+  it('should return true on correct query', () => {
+    const validUrl =
+      'https://www.example.com/products?category=electronics&sort=price_asc';
+    const result = urlValidator.isValidUrl(validUrl);
+    expect(result).toBe(true);
+  });
+
+  it('should return true on correct fragment', () => {
+    const validUrl = 'https://www.example.com/article#section-conclusion';
+    const result = urlValidator.isValidUrl(validUrl);
+    expect(result).toBe(true);
+  });
+
   it('should return false on invalid protocol', () => {
     const invalidUrl = 'hps://mysite.more.com';
     const result = urlValidator.isValidUrl(invalidUrl);
