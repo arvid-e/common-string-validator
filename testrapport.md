@@ -118,7 +118,8 @@ Unit tests has been created for each validator in this module using **Vitest** a
 |---|---|---|
 | isValidUrl() | Unit test | PASS |
 
-## Test results summary
+# Test results
+## 2025-10-02
+![Test report 2](images/test-report-2025-10-02.png "Title")
 
-![Test report](images/test-report.png "Title")
 
