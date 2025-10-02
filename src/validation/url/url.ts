@@ -70,11 +70,7 @@ export class UrlValidator {
   private extractAndValidateUrl(urlString: string, urlRegex: RegExp): boolean {
     const regexGroups = urlString.match(urlRegex);
 
-    if (!regexGroups?.groups) {
-      return false;
-    }
-
-    if (!regexGroups.groups.hostname) {
+    if (!regexGroups?.groups || !regexGroups.groups.hostname) {
       return false;
     }
 
