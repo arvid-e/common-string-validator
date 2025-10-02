@@ -2,9 +2,9 @@
 
 The purpose of this module is to provide validators for commonly used strings. This module makes sure that these different kinds of strings are in the correct format so that they can be used without problems in an application.
 
-# Validators
+# Available Validators
 
-### Date validation
+## Date validation
 
 Validates a date string in three different formats:
 
@@ -15,7 +15,7 @@ Validates a date string in three different formats:
 - **ISO standard format**:
   - 2025-01-10
 
-### Email validation
+## Email validation
 
 Validates using the the RFC 5322 Internet Message Format standard.
 
@@ -37,7 +37,7 @@ Validates using the the RFC 5322 Internet Message Format standard.
   - firstname.lastname@provider.com
   - firstname-lastname@provider.company.org
 
-### Password validation
+## Password validation
 
 Validates a password string against complexity requirements (uppercase, lowercase, number, special character) and a minimum length.
 
@@ -48,7 +48,7 @@ Validates a password string against complexity requirements (uppercase, lowercas
   - Has a special character.
   - Is at least 12 characters long.
 
-### Username validation
+## Username validation
 
 Validates a username string to make sure that it is easy to read.
 
@@ -57,7 +57,7 @@ Validates a username string to make sure that it is easy to read.
   - Must be between 3 and 12 characters long.
   - Cannot have consecutive dashes or underscores.
 
-### URL Validation
+## URL Validation
 
 Validates an URL string to make sure it is in a usable format for HTTP requests. Only validates http or https schemes.
 
@@ -178,3 +178,7 @@ console.log(`Is "${username}" a valid username?`, isValidUrl(url));
 // Output: Is 'Johnny' a valid url? false
 
 ```
+
+# License
+
+This project is licensed under the **MIT License**.
