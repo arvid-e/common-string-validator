@@ -23,9 +23,9 @@ export class EmailValidator {
   private constructEmailRegex(): RegExp {
     const localNameRegexStrings = [
       '^', // Start of the string
-      '(?!.*[._+-]{2})', // No consecutive special characters
+      "(?!.*[.!#$%&'*+-/=?^_`{|}~]{2})", // No consecutive special characters
       '[A-Za-z0-9]', // Must start with a letter or number
-      '(?:[A-Za-z0-9._+-]*[A-Za-z0-9])?', // Followed by a mix of allowed characters
+      "[A-Za-z0-9.!#$%&'*+-/=?^_`{|}~]*[A-Za-z0-9]", // Followed by a mix of allowed characters
       '@', // Separator
     ];
     const domainNameRegexStrings = [

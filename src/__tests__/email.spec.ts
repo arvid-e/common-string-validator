@@ -22,7 +22,7 @@ describe('isValidEmail()', () => {
   });
 
   it('should return false on invalid characters', () => {
-    const invalidCharacter = 'kalle#kollen@gmail.com';
+    const invalidCharacter = 'kalle>kollen@gmail.com';
     const invalidCharacter2 = 'kalle.kollen@gma*il.com';
 
     const invalidCharacterResult =
