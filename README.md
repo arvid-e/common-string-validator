@@ -1,60 +1,75 @@
-# Common String Validator Module
+# Common String Validator
 
-The purpose of this module is to provide validators for commonly used strings. This module makes sure that these different kinds of strings are in the correct format so that they can be used without problems in an application. 
-
+The purpose of this module is to provide validators for commonly used strings. This module makes sure that these different kinds of strings are in the correct format so that they can be used without problems in an application.
 
 # Validators
 
 ### Date validation
-Validates a date string in three different formats:  
-* **Short format**
-  * 01/01/2025
-* **Long format**
-  * January 1, 2025
-* **ISO standard format**: 
-  * 2025:01:01
 
-### E-mail validation
+Validates a date string in three different formats:
+
+- **Short format**
+  - 10/01/2025
+- **Long format**
+  - January 10, 2025
+- **ISO standard format**:
+  - 2025-01-10
+
+### Email validation
+
 Validates using the most commonly used E-mail standard used by the most common E-mail providers.
 
-* **Valid E-mail examples**
-  * name@provider.com
-  * firstname.lastname@provider.com
-  * firstname-lastname@provider.company.org
+**Format** : local-part@domain.tld
 
+- **Rules**
+  - Can only contain letters, numbers, undercores, dashes and hyphens in the local name part.
+  - Must contain exactly one "@" symbol.
+  - No consecutive special characters.
+  - No special character first, last or next to the "@" symbol.
+  - Top level domain name must be at least 2 characters long.
+  - Local part maximum length is 64 characters.
+  - Domain name maximum length is 64 characters.
+  - Maximum total length is 254 characters.
+
+- **Valid E-mail examples**
+  - name@provider.com
+  - firstname.lastname@provider.com
+  - firstname-lastname@provider.company.org
 
 ### Password validation
-  Validates a password string by making sure it contains character variation and a minimum length.
 
-  * **Rules**
-    * Has a uppercase letter.
-    * Has a lowercase letter.
-    * Has a number.
-    * Has a special character.
-    * Is at least 12 characters long.
+Validates a password string against complexity requirements (uppercase, lowercase, number, special character) and a minimum length.
 
+- **Rules**
+  - Has a uppercase letter.
+  - Has a lowercase letter.
+  - Has a number.
+  - Has a special character.
+  - Is at least 12 characters long.
 
 ### Username validation
+
 Validates a username string to make sure that it is easy to read.
 
-* **Rules**
-  * Can only contain letters, dashes and underscores.
-  * Must be between 3 and 12 characters long.
-  * Cannot have consecutive dashes or underscores.
+- **Rules**
+  - Can only contain letters, dashes and underscores.
+  - Must be between 3 and 12 characters long.
+  - Cannot have consecutive dashes or underscores.
 
 ### URL Validation
+
 Validates an URL string to make sure it is in a usable format for HTTP requests.
 
-* **Valid format**
-  * scheme://[:port]/path[?query][#fragment]
-  * **⚠** Only validates http or https schemes.
+- **Valid format**
+  - scheme://[:port]/path[?query][#fragment]
+  - **⚠** Only validates http or https schemes.
 
 ## Example use cases
-* API endpoints
-* Account creation
-* User registration
-* Content Management Systems
 
+- API endpoints
+- Account creation
+- User registration
+- Content Management Systems
 
 ## Installation
 
@@ -63,6 +78,7 @@ Validates an URL string to make sure it is in a usable format for HTTP requests.
 ## Code examples
 
 ### Date validation
+
 ```
 import { isValidDate } from 'common-string-validator';
 
@@ -83,6 +99,7 @@ console.log(`Is "${longDate}" a valid date?`, isValidDate(longDate));
 ```
 
 ### Email validation
+
 ```
 import { isValidEmail } from 'common-string-validator';
 
@@ -101,11 +118,12 @@ console.log(`Is "${email}" a valid E-mail?`, isValidEmail(email));
 ```
 
 ### Password validation
+
 ```
 import { isValidPassword } from 'common-string-validator';
 
 // Valid password
-const password = 'Sklr99m##dL';
+const password = 'Sklr99m##dLBB2';
 console.log(`Is "${password}" a valid password?`, isValidPassword(password));
 
 // Output: Is 'Sklr99m##dL' a valid password? true
@@ -119,6 +137,7 @@ console.log(`Is "${password}" a valid password?`, isValidPassword(password));
 ```
 
 ### Username validation
+
 ```
 import { isValidUsername } from 'common-string-validator';
 
@@ -138,6 +157,7 @@ console.log(`Is "${username}" a valid username?`, isValidUsername(username));
 ```
 
 ### URL validation
+
 ```
 import { isValidUrl } from 'common-string-validator';
 
@@ -155,139 +175,3 @@ console.log(`Is "${username}" a valid username?`, isValidUrl(url));
 // Output: Is 'Johnny' a valid url? false
 
 ```
-
-# Tests
-
-Unit tests has been created for each validator in this module using **Vitest** and can be found in the src/_\_tests__/ folder. A summary of the test results can be found at the end of the Tests section.
-
-## Running the tests
-
-`npm run vitest`
-
-## Test requirements
-
-### Date validator
- 
-* Positive testing
-  * Valid Short format date
-  * Valid Long format date
-  * Valid ISO format date
-
-* Negative testing
-  * Day number over 31 or under 1.
-  * Month number over 12 or under 1.
-  * Year number under 1.
-  * Month name in long format spelt wrong.
-  * Date doesn't exist (e.g February 31).
-  * No comma in long date.
-
-
-| Method | Test | Result |
-|---|---|---|
-| isValidISODate() | Unit test | PASS |
-| isValidShortDate() | Unit test | PASS |
-| isValidLongDate() | Unit test | PASS |
-| isValidDate() | Unit test | PASS |
-
----
-
-### E-mail validator
- 
-* Positive testing
-  * Valid E-mail string.
-
-
-* Negative testing
-  * Too short top level domain name.
-  * Invalid characters.
-  * Consecutive allowed special character.
-  * Doesn't contain "@" character.
-
-
-
-| Method | Test | Result |
-|---|---|---|
-| isValidEmail() | Unit test | PASS |
-
----
-
-### Password validator
- 
-* Positive testing
-  * Valid password string.
-  * Contains lower case letter.
-  * Contains upper case letter.
-  * Contains number.
-  * Contains special character.
-  * Valid password string length.
-
-
-* Negative testing
-  * Too short password.
-  * Doesn't contain lower case letter.
-  * Doesn't contain upper case letter.
-  * Doesn't contain number.
-  * Doesn't contain special character.
-
-
-
-| Method | Test | Result |
-|---|---|---|
-| isValidPassword() | Unit test | PASS |
-| hasValidLength() | Unit test | PASS |
-| containsNumber() | Unit test | PASS |
-| containsLowerCaseLetter() | Unit test | PASS |
-| containsUpperCaseLetter() | Unit test | PASS |
-| containsSpecialCharacter() | Unit test | PASS |
-
----
-
-### URL validator
- 
-* Positive testing
-  * Valid URL string.
-
-* Negative testing
-  * Consecutive periods in hostname.
-  * Too long hostname.
-  * Too long port number.
-  * Invalid protocol.
-
-
-| Method | Test | Result |
-|---|---|---|
-| isValidUrl() | Unit test | PASS |
-
----
-
-### Username validator
- 
-* Positive testing
-  * Valid username string.
-
-* Negative testing
-  * Consecutive allowed special characters.
-  * Too long username.
-  * Too short username.
-  * Invalid characters.
-
-
-| Method | Test | Result |
-|---|---|---|
-| isValidUrl() | Unit test | PASS |
-
-## Test results summary
-
-![Test report](images/test-report.png "Title")
-
-
-
-
-
-
-
-
-
-
-
-
