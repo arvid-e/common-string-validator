@@ -2,13 +2,14 @@
   "name": "common-string-validator",
   "version": "1.0.1",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/main.js",
+  "types": "dist/types/main.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc",
+    "prebuild": "rm -rf dist",
     "start": "tsc && node dist/main.js",
     "test": "vitest",
     "coverage": "vitest run --coverage",
