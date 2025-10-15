@@ -22,7 +22,7 @@ Validates using the the RFC 5322 Internet Message Format standard.
 **Format** : local-part@domain.tld
 
 - **Rules**
-  - The local name can only contain letters, numbers and ASCII printable characters (.!#$%&'*+-/=?^_`{|}~)
+  - The local name can only contain letters, numbers and ASCII printable characters (.!#$%&'\*+-/=?^\_`{|}~)
   - The domain name can only contains letters, numbers and dashes.
   - The Email string must contain exactly one "@" symbol.
   - No consecutive special characters.
