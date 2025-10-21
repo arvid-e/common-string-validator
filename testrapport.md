@@ -23,13 +23,6 @@ Unit tests has been created for each validator in this module using **Vitest** a
   - Date doesn't exist (e.g February 31).
   - No comma in long date.
 
-| Method             | Test      | Result |
-| ------------------ | --------- | ------ |
-| isValidISODate()   | Unit test | PASS   |
-| isValidShortDate() | Unit test | PASS   |
-| isValidLongDate()  | Unit test | PASS   |
-| isValidDate()      | Unit test | PASS   |
-
 ---
 
 ### E-mail validator
@@ -43,9 +36,6 @@ Unit tests has been created for each validator in this module using **Vitest** a
   - Consecutive allowed special character.
   - Doesn't contain "@" character.
 
-| Method         | Test      | Result |
-| -------------- | --------- | ------ |
-| isValidEmail() | Unit test | PASS   |
 
 ---
 
@@ -66,15 +56,6 @@ Unit tests has been created for each validator in this module using **Vitest** a
   - Doesn't contain number.
   - Doesn't contain special character.
 
-| Method                     | Test      | Result |
-| -------------------------- | --------- | ------ |
-| isValidPassword()          | Unit test | PASS   |
-| hasValidLength()           | Unit test | PASS   |
-| containsNumber()           | Unit test | PASS   |
-| containsLowerCaseLetter()  | Unit test | PASS   |
-| containsUpperCaseLetter()  | Unit test | PASS   |
-| containsSpecialCharacter() | Unit test | PASS   |
-
 ---
 
 ### URL validator
@@ -91,10 +72,6 @@ Unit tests has been created for each validator in this module using **Vitest** a
   - Too long port number.
   - Invalid protocol.
 
-| Method       | Test      | Result |
-| ------------ | --------- | ------ |
-| isValidUrl() | Unit test | PASS   |
-
 ---
 
 ### Username validator
@@ -107,10 +84,6 @@ Unit tests has been created for each validator in this module using **Vitest** a
   - Too long username.
   - Too short username.
   - Invalid characters.
-
-| Method       | Test      | Result |
-| ------------ | --------- | ------ |
-| isValidUrl() | Unit test | PASS   |
 
 # Test results
 
